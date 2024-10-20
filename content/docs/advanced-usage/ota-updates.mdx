@@ -1,0 +1,33 @@
+---
+title: "OTA Updates"
+description: "Understand JetKVM's over-the-air (OTA) update system, including automatic updates, manual checks, development channel, and rolling releases. Learn how to keep your device up-to-date with the latest features and improvements."
+order: 2
+---
+
+JetKVM supports over-the-air (OTA) updates, which automatically install new software versions to keep your device up-to-date with the latest features, bug fixes, and improvements.
+
+## Automatic Updates
+
+By default, **JetKVM is set to automatically update**. The device will periodically check for new updates in the background. If a new update is available, it will be installed automatically. However, JetKVM is designed to avoid disruptions during active use.
+
+The update system will check for active webRTC connections, and **it will delay updates if you are currently controlling a device**. This ensures that you won't be interrupted in the middle of important tasks. If you have long-running webRTC connections, it's recommended to periodically check for updates manually to ensure your device stays current.
+
+## Manually Checking for Updates
+
+If you prefer, you can manually check for updates:
+
+1. Go to the Settings in the JetKVM web UI.
+2. Click the Check for Update button to see if any new updates are available.
+3. If an update is available, you can choose to install it immediately.
+
+You also have the option to disable automatic updates in the Settings page if you'd prefer to manage updates manually.
+
+## Rolling Releases
+
+JetKVM employs a rolling release system for major updates to ensure stability across all devices. **When a new version is released, it is initially rolled out to only 10% of users**. The rollout gradually expands until 100% of devices are updated. This approach helps mitigate risks by preventing widespread issues in case a release encounters unforeseen problems.
+
+If you notice that a new version has been released but your device hasn't updated yet, you can manually trigger the update by checking for updates in the Settings page. However, **if your device is not part of the current rollout group, the "Check for Update" button will not show any available updates**, even if a new version has been released. You will need to wait for your device to be included in the next phase of the rollout or manually check later.
+
+## Development Channel (Dev Channel)
+
+JetKVM offers a development channel for users who want early access to updates. By enabling this option in the Settings sidebar, you will receive development builds before they are rolled out to all users. These builds may include new features, bug fixes, or experimental updates that are still being tested. **Be aware that dev channel updates can be less stable than official releases, so enable it with caution.**

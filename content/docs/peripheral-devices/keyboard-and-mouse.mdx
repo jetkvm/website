@@ -1,0 +1,47 @@
+---
+title: "Keyboard & Mouse"
+description: "Explore JetKVM's keyboard and mouse features, including mouse modes, the Mouse Jiggler function, and virtual keyboard options. Learn how to optimize your remote input experience for various scenarios."
+order: 2
+---
+
+## Mouse
+
+### Modes
+
+JetKVM supports two distinct mouse modes, allowing flexible control depending on your hardware and system configuration:
+
+- **Absolute Mode**: The input device sends exact X, Y coordinates for the cursor's position. This is commonly used in touchscreens and drawing tablets. JetKVM defaults to absolute mode for its ease of use.
+- **Relative Mode**: This mode transmits only the relative offset from the current cursor position, which is typical for standard mice. Relative mode is useful for systems where BIOS or UEFI do not support absolute positioning. When using relative mode, the browser will exclusively capture your mouse input when you click within the remote screen.
+
+**Note**: Relative mode is not yet supported in the current version but is planned for future releases.
+
+### Jiggler
+
+The Mouse Jiggler feature simulates small, periodic mouse movements to prevent sleep mode, standby, or screen savers from activating. This is particularly helpful during long-running tasks, like software installations, where manual mouse movement is otherwise needed to prevent the remote system from becoming idle.
+
+To activate the Mouse Jiggler, navigate to the action bar at the top right of the interface. In the mouse settings section, you'll find an option to toggle "Enable Mouse Jiggler". Simply click this toggle to turn the feature on or off as needed.
+
+#### How Mouse Jiggler Works
+
+Once activated, JetKVM monitors the elapsed time since the last user input, whether from the keyboard or mouse. If no user interaction occurs for more than 30 seconds, the jiggler automatically moves the mouse to a set position (currently X:1, Y:1) and repeats this action every 30 seconds.
+
+Key Points to Note:
+
+- The jiggler runs independently on the JetKVM device, meaning it continues to function even if the web interface is closed.
+- The jiggler will not interfere with regular user input. If the user moves the mouse or types within the 30-second window, the jiggler's timer resets. This ensures that the jiggler only activates when there's a period of inactivity.
+
+### Additional Mouse settings
+
+- **Hide Cursor**: This option hides the local UI cursor, leaving only the remote system's cursor visible. This feature is useful when you have a fast connection and prefer to focus solely on the remote system's mouse movements.
+
+## Keyboard
+
+### Paste from Host
+
+The "Paste from Host" feature allows you to paste text from your local machine to the remote server you are managing. This functionality is accessible via the action bar, located at the top left of the interface, above the video feed.
+
+Currently, JetKVM supports only the US keyboard layout, and the host key map defaults to the US setting.
+
+### Virtual Keyboard
+
+JetKVM includes a virtual keyboard feature, providing basic keyboard input through the UI. This allows you to send individual keystrokes to the remote machine as needed.

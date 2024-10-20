@@ -1,0 +1,53 @@
+---
+title: "Local Access"
+description: "Learn how to access your JetKVM device locally, set up password protection, reset your password, and manage authentication settings for secure local network access."
+order: 1
+---
+
+To access the JetKVM web UI, you'll need the device's IP address, which is displayed on the front screen of the JetKVM device along with the MAC address. Simply refer to this screen, note the IP address, and use it to navigate to the web UI in your browser.
+
+## Local Authentication
+
+Local access is the default access mode for every newly installed JetKVM device. During the onboarding process, you can choose whether or not to password-protect your device for access on the local network.
+
+### Password Protection
+
+If you choose not to password-protect the device, anyone on the local network who knows the JetKVM's IP address will be able to access the web UI.
+For security purposes, it's generally **recommended to enable password protection** to safeguard your device from unauthorized access. The access token is stored as an HTTP-only cookie in the browser for 7 days, making it quite comfortable to enable password protection.
+
+No part of the authentication data leaves the JetKVM, meaning all access control is handled locally on the device.
+
+### Changing Password Settings
+
+You can modify the password settings at any time, either during the onboarding process or later via the settings. The following actions are available:
+
+- **Enable Password Protection:** If no password was set during onboarding, you can enable it later by providing a password that will be required on the login screen.
+- **Update Password:** You can update the password if needed by entering a new one.
+- **Delete Password:** This action removes the password, allowing password-less access to the device.
+
+## Reset Password
+
+If you've forgotten your local password, there are two ways to reset it:
+
+### Option 1: Developer Mode
+
+If you have **Developer Mode** enabled, you can reset the password by accessing the device via SSH:
+
+1. **SSH Access:** Use the SSH key you provided when enabling Developer Mode to SSH into the device.
+
+2. **Delete Config File and Reboot:**
+
+```bash
+cd /user_data/           # Navigate to the user_data directory
+rm kvm_config.json       # Delete the configuration file containing the password
+sync                     # Ensure file changes are written to the file system
+reboot                   # Reboot the device
+```
+
+This will reset the configuration file, removing the local password and any other settings. After rebooting the device, you'll need to reconfigure all settings, including enabling **Cloud Mode** if you were using it before.
+
+### Option 2: Factory Reset
+
+If you do not have Developer Mode enabled, you can reset your password by performing a factory reset on the device. To do this, simply follow the steps outlined in the [Factory Reset guide](/docs/advanced-usage/factory-reset), which you can find in the Advanced Usage section of our documentation. This process will restore your JetKVM device to its original settings, effectively resetting the password.
+
+Keep in mind that a factory reset will erase all configurations, including your cloud connection and other settings. After the reset is complete, you'll need to go through the initial setup process again, just as you did when you first received the device. While this method is more drastic than changing a password, it ensures you regain full access to your device.

@@ -1,0 +1,28 @@
+---
+title: "Factory Reset"
+description: "Learn how to perform a factory reset on your JetKVM device using DFU Mode. This guide covers entering DFU Mode and flashing the latest firmware to restore your device to its original settings."
+order: 1
+---
+
+If you need to reset your JetKVM device, this can be done by reflashing the firmware through DFU Mode (Device Firmware Update). This process restores the device by installing the latest firmware, effectively resetting it to factory settings. DFU Mode is essential when you can't access the KVM over SSH or want to start fresh with a clean firmware install.
+
+## Reset Your JetKVM Using DFU Mode
+
+To reset the device, you will use DFU Mode, which allows you to flash the firmware directly to the KVM. Instead of compiling custom firmware, you will download the latest official firmware from the JetKVM GitHub repository.
+
+### Steps to Enter DFU Mode:
+
+1. Unplug the USB cable from the device.
+2. Locate the small hole on the right side of the device.
+3. Insert a needle into the hole and press & hold the button inside before reconnecting the USB cable.
+4. Hold the needle for three seconds, then release. Your device is now in DFU Mode.
+
+##### Flashing the Latest Firmware:
+
+1. Download the firmware update tool from [MacOS & Linux](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/) or [Windows](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1106/Luckfox-Pico-Ultra-W/Luckfox-Pico-emmc-burn-image/#driver-installation).
+2. Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
+3. Once you have the firmware and update tool, run the following command in your terminal to flash the firmware, while being in DFU Mode:
+
+```sh
+sudo ./upgrade_tool uf update.img
+```
