@@ -1,0 +1,42 @@
+---
+title: "Developing"
+description: "Explore JetKVM's developer features including Developer Mode for SSH access, DFU Mode for firmware updates, and Serial Console for debugging. Learn how to customize and extend JetKVM's functionality."
+order: 2
+---
+
+JetKVM is built with developers in mind, providing tools and modes that allow you to explore, modify, and extend the functionality of the device. If you're interested in tinkering, testing new firmware, or contributing to JetKVM, here's an overview of the key development features.
+
+## Developer Mode
+
+Developer Mode unlocks SSH access to the JetKVM device, allowing you to customize or modify the system. When you enable Developer Mode, you must provide an **SSH public key**, as JetKVM uses key-based authentication. **We do not allow password-based SSH logins for security reasons.**
+
+Once enabled, you can SSH into the JetKVM device, explore the system, and run your own applications. The system runs on a lightweight Linux environment using **BusyBox** as the core user space and **DropBear** as the SSH server.
+
+## DFU Mode (Device Firmware Update)
+
+DFU Mode allows you to update the firmware of your JetKVM device, especially when standard access methods like SSH are not available or when testing new firmware. DFU mode provides a way to recover or upgrade the firmware without relying on the standard boot process.
+
+### How to Enter DFU Mode:
+
+1. Unplug the USB cable from the device.
+2. Locate the small hole on the right side of the device.
+3. Insert a needle into the hole and press & hold the button inside before reconnecting the USB cable.
+4. Hold the needle for three seconds, then release. Your device is now in DFU Mode.
+
+### Flashing New Firmware:
+
+1. Download the firmware update tool from our [here](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/).
+2. Compile your firmware into an `.img` file.
+3. Run the following command in your terminal:
+
+```sh
+sudo ./upgrade_tool uf your_firmware.img
+```
+
+4. The tool will display progress, and once completed, the JetKVM device will boot with the new firmware.
+
+## Serial Console
+
+A serial console provides direct access to system logs, boot messages, and other low-level interactions. It is essential for debugging and monitoring the device during the boot process or when testing new features.
+
+Since modern computers no longer include traditional serial ports, JetKVM uses a UART splitter to provide serial console access. The UART signal is multiplexed over the SBU (Sideband Use) pins of the USB cable, so you'll need a UART splitter to connect to the serial console.

@@ -1,0 +1,67 @@
+---
+title: "Troubleshooting"
+description: "Troubleshoot common JetKVM issues. Learn how to check connection status, verify USB connections, use the Debug Info Bar, and submit bug reports when needed for smooth remote computer management."
+order: 1
+---
+
+When issues arise with JetKVM, there are a few key steps you can take to identify and resolve the problem. Below, we'll guide you through the general approach to troubleshooting, highlighting the areas to check first and what each status or state means.
+
+## Check Connection Status
+
+The first step in troubleshooting is verifying the connection status between your device and the server. JetKVM provides a quick visual check in the **top-right corner of the dashboard**, where you'll see icons that represent the current connection status for both:
+
+- **WebRTC Connection**: This represents the connection to the server. If this is disrupted, you'll see a message explaining the issue and suggested actions.
+- **USB Connection**: This shows the status of the USB connection between your JetKVM device and the target host.
+
+If both connections are **green** and stable but you're still encountering issues, proceed to the next steps.
+
+## Verify USB Connection
+
+If the USB connection icon is **grayed out**, there's likely an issue with the USB cable connection. Common reasons include:
+
+- **USB not attached**: Check the physical connection and make sure the cable is properly inserted.
+- **USB suspended**: This state usually indicates a low power mode or a suspension due to inactivity.
+
+For a more detailed state of the USB connection, move to the next step and enable the debug info bar.
+
+## Enable Debug Info Bar
+
+If the icons aren't giving enough context or you're still unable to identify the issue, the **Debug Info Bar** in the **Settings** provides deeper insight into what's happening. Here's how to access and use it:
+
+- **Go to Settings** in the WebUI.
+- **Enable Debug Info Bar** in the bottom-left corner.
+
+Once enabled, you'll see additional diagnostic details, such as:
+
+- **Resolution & Video Size**:
+
+  - _Resolution_: This shows the actual resolution being streamed from the KVM device.
+  - _Video Size_: This reflects the size of the video element on the browser window, adjusting dynamically based on browser dimensions.
+
+- **Mouse Pointer Position**: This shows the X and Y coordinates of the mouse pointer in real-time, which helps debug input issues.
+
+- **USB State**: You'll see the raw state of the USB connection:
+
+  - **Configured**: The USB connection is functioning as expected.
+  - **Attached**: The device is physically connected but may still be initializing.
+  - **Not Attached**: The USB device is not detected.
+  - **Suspended**: The connection is idle or in a low-power state.
+  - **Addressed**: The USB device is recognized and assigned an address but not yet fully functional.
+
+- **HDMI State**: This shows the status of the HDMI signal from the target host:
+  - **Ready**: Everything is functioning properly.
+  - **No Signal**: The target device isn't sending a video signal. Check cables or ensure the device is powered on.
+  - **No Lock/Out of Range**: The signal is either unsupported or outside the allowed range (e.g., resolution or refresh rate too high).
+  - **Connecting**: The HDMI connection is initializing and should be ready soon.
+
+## When All Else Fails
+
+If none of the above steps resolve your issue and everything seems to be connected, but JetKVM is still not functioning, we recommend submitting a bug report. Here's how to do that:
+
+1. **Go to GitHub** and navigate to our issues page. (To be added at launch, when source code is available.)
+2. **Fill out the bug report template**. Include important information such as:
+   - The **JetKVM app version**.
+   - The **system version** of your KVM device.
+   - A brief description of the problem and context (e.g., when it happens, how often, any notable actions that caused the issue).
+
+This will help us quickly identify and resolve the problem for you.

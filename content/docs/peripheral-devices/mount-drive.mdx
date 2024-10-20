@@ -1,0 +1,55 @@
+---
+title: "Mount Drive"
+description: "Learn how to use JetKVM's Mount Drive feature to emulate a virtual CD/DVD or disk drive on your target host. Discover supported image formats, drive modes, and the innovative WebRTC streaming process for efficient file access."
+order: 1
+---
+
+The Mount Drive feature allows JetKVM to emulate a read-only virtual CD/DVD or disk drive on the target host. This drive is accessible even during BIOS or UEFI boot, making it useful for tasks like reinstalling an operating system or mounting an ISO to install applications on the target host.
+
+**JetKVM supports the following image formats: ISO, IMG, QCOW2, WDI, and VMDK.** The system provides two drive modes: CD/DVD Mode and disk Drive Mode. It's important to note that **only one drive can be mounted at a time**, and the drive mode must be set before mounting the image.
+
+## Mount Drive Methods
+
+### Storage mount
+
+Storage mount allows you to mount previously uploaded images from the JetKVM storage to the remote host. This is the fastest way to mount an image, as the JetKVM can provide the image from the JetKVM stroage at speeds of peak USB 2.0 speed.
+
+**We generally recommend using the Storage mount for the fastest performance.** The only downside is that you need to upload the image to the JetKVM storage before you can mount it.
+
+### URL mount
+
+URL Mount **streams the image in real time using HTTP(S) from a public web address to the target host through JetKVM.**
+
+When the target host initiates a file block read, JetKVM fetches the data from the specified URL and streams it directly to the host, functioning like a local drive. This feature allows for convenient access to boot images or data hosted externally, without needing to store them locally.
+
+JetKVM also **leverages predictive caching, pre-fetching data based on expected read operations.** This ensures faster performance, as the system caches data before the host requests it. The real-time performance of the URL stream can be tracked in the UI, providing insight into block read speeds as they occur.
+
+To streamline the process, JetKVM includes a list of popular image URLs for quick mounting. Users can select these pre-configured URLs or provide their own.
+
+### Browser mount
+
+Browser mount **streams the image in real time using WebRTC from the browser, to the target host, through the JetKVM.**
+
+When the target host performs a file block read, JetKVM forwards that request over WebRTC to the client's local system. The local system then reads the necessary data and sends it back to the target host.
+This streaming process ensures that the image is mounted instantaneously. However, it's important to note that the tab must remain open for the streaming to continue, as the data is being transmitted in real-time.
+
+To optimize performance, **JetKVM uses a predictive pre-caching mechanism to anticipate where the target host will perform read operations.** This pre-streaming accelerates the reading process, as data is pre-read and cached before the request reaches the target host.
+
+## USB Modes
+
+JetKVM offers two distinct USB modes for mounting images on a target host: **CD/DVD Mode** and **Disk Mode**. Choosing the right mode is key to ensuring compatibility and optimal performance for tasks such as operating system installations and software deployments.
+
+### CD/DVD Mode
+
+In CD/DVD Mode, the image is emulated as a virtual optical drive (CD or DVD). This mode is particularly useful for systems or installers that require the media to be presented as a CD or DVD, such as specific Windows installers or software that needs optical media emulation.
+
+For images larger than 2.2GB, **JetKVM transparently switches to DVD Mode, which allows mounting larger images as virtual DVDs.**
+
+### Disk Mode
+
+In Disk Mode, the mounted image is emulated as a virtual USB disk drive. This mode is best suited for:
+
+- **Modern Boot Methods:** Many systems today boot from USB disk drives, making Disk Mode a convenient choice for installations, live environments, or recovery tasks.
+- **Large Images:** It supports images larger than 2.2GB, making it ideal for modern operating system installations.
+
+However, some images, especially certain OS installers, may not work in Disk Mode due to how they are structured or limitations in the target system's BIOS or UEFI firmware. In those cases, you can try using CD/DVD Mode instead.

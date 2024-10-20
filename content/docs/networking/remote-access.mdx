@@ -1,0 +1,43 @@
+---
+title: "Remote Access"
+description: "Discover how to enable and use Remote Access for your JetKVM device, allowing secure management from anywhere via WebRTC and OIDC authentication."
+order: 1
+---
+
+Remote Access allows you to connect to your JetKVM device from anywhere on the internet. Through our [cloud dashboard](https://app.jetkvm.com), you can log in, get an overview and control any of your cloud-enabled devices. This means you can access and manage your JetKVM devices from your phone or computer, anywhere in the world with an internet connection.
+
+## How to enable Remote Access
+
+By default, Remote Access is turned off, but enabling it is simple:
+
+1. **Access the JetKVM device locally:** Open your browser and go to the local IP address displayed on the screen of your JetKVM device.
+2. **Enable Remote Access:** In the top right corner, click **Settings** in the action bar, scroll down and click Enable Remote Access.
+3. **Authenticate via OIDC:** You will be redirected to an authentication page where you need to log in using your OIDC provider (currently only Google is supported).
+
+Once authenticated, Remote Access will be enabled, and you will be redirected back to the JetKVM cloud dashboard, where you can securely manage your device from anywhere on the internet.
+
+## How It Works
+
+All communication between the device and the browser, whether for local or remote access, is handled through **WebRTC**, ensuring fast and efficient peer-to-peer connections. **WebRTC** provides built-in encryption using DTLS (Datagram Transport Layer Security) for data encryption and SRTP (Secure Real-time Transport Protocol) for media encryption, ensuring that all data, video, and control streams are encrypted end-to-end while in transit.
+
+<img
+  src="/remote-network-diagram.jpg"
+  alt="Remote access network diagram"
+  style={{ width: "100%", maxWidth: "520px", marginBottom: "32px" }}
+/>
+
+## Zero Trust Security Model
+
+To further enhance security, JetKVM employs a **Zero Trust security model**. In Zero Trust, the principle is to "never trust, always verify." This means the device itself is responsible for determining whether an authentication request is valid—there is no central server involved in verifying credentials. JetKVM uses **OIDC (OpenID Connect)** for authentication, currently supporting only Google accounts. Additional OIDC providers may be added in the future.
+
+## Stun and Turn Servers
+
+In most cases, WebRTC establishes direct peer-to-peer connections. However, network restrictions like firewalls or strict NAT policies can prevent direct communication between devices. To solve this, JetKVM, through Cloudflare, provides free STUN and TURN servers for cases where WebRTC requires additional support.
+
+### STUN Servers
+
+**STUN (Session Traversal Utilities for NAT)** servers help devices behind NAT (Network Address Translation) determine their public IP address and port. This process facilitates peer-to-peer connections in most scenarios, even when devices are located in different network environments.
+
+### TURN Servers
+
+When STUN is not enough, such as in more complex network setups with strict NAT policies, **TURN (Traversal Using Relays around NAT)** servers become necessary. TURN servers act as intermediaries that relay traffic between devices, bypassing firewalls and restrictive NAT configurations. TURN servers are particularly important when direct peer-to-peer communication fails, such as when devices are behind **Carrier-Grade NAT (CGNAT)**, often seen in mobile networks.
