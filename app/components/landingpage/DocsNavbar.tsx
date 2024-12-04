@@ -5,6 +5,7 @@ import Container from "~/components/Container";
 import { Search } from "~/components/landingpage/Search";
 import { Link } from "@remix-run/react";
 import { ChevronLeftIcon } from "@heroicons/react/16/solid";
+import { DiscordIcon } from "../Icons";
 
 type HeaderProps = { navigation: any; isLoggedIn: boolean | undefined };
 
@@ -56,8 +57,9 @@ export function DocsNavbar({ navigation, isLoggedIn }: HeaderProps) {
           <LinkButton
               size="SM"
               theme="light"
-              to="https://jetkvm.com/discord"
-              text="Discord"
+              to="/discord"
+              text="Join Discord"
+              LeadingIcon={DiscordIcon}
             />
             <LinkButton
               size="SM"
