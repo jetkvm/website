@@ -5,6 +5,7 @@ import Container from "~/components/Container";
 import { Search } from "~/components/landingpage/Search";
 import { Link } from "@remix-run/react";
 import { ChevronLeftIcon } from "@heroicons/react/16/solid";
+import { DiscordIcon } from "../Icons";
 
 type HeaderProps = { navigation: any; isLoggedIn: boolean | undefined };
 
@@ -53,6 +54,13 @@ export function DocsNavbar({ navigation, isLoggedIn }: HeaderProps) {
             <Search />
           </div>
           <div className="hidden h-[36px] items-center gap-x-4 lg:flex">
+          <LinkButton
+              size="SM"
+              theme="light"
+              to="/discord"
+              text="Join Discord"
+              LeadingIcon={DiscordIcon}
+            />
             <LinkButton
               size="SM"
               theme="light"
