@@ -53,6 +53,12 @@ export function DocsNavbar({ navigation, isLoggedIn }: HeaderProps) {
             <Search />
           </div>
           <div className="hidden h-[36px] items-center gap-x-4 lg:flex">
+          <LinkButton
+              size="SM"
+              theme="light"
+              to="https://jetkvm.com/discord"
+              text="Discord"
+            />
             <LinkButton
               size="SM"
               theme="light"
