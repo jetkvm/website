@@ -12,7 +12,7 @@ The Mount Drive feature allows JetKVM to emulate a read-only virtual CD/DVD or d
 
 ### Storage mount
 
-Storage mount allows you to mount previously uploaded images from the JetKVM storage to the remote host. This is the fastest way to mount an image, as the JetKVM can provide the image from the JetKVM stroage at speeds of peak USB 2.0 speed.
+Storage mount allows you to mount previously uploaded images from the JetKVM storage to the remote host. This is the fastest way to mount an image, as the JetKVM can provide the image from the JetKVM storage at speeds of peak USB 2.0 speed.
 
 **We generally recommend using the Storage mount for the fastest performance.** The only downside is that you need to upload the image to the JetKVM storage before you can mount it.
 
@@ -43,7 +43,7 @@ JetKVM offers two distinct USB modes for mounting images on a target host: **CD/
 
 In CD/DVD Mode, the image is emulated as a virtual optical drive (CD or DVD). This mode is particularly useful for systems or installers that require the media to be presented as a CD or DVD, such as specific Windows installers or software that needs optical media emulation.
 
-For images larger than 2.2GB, **JetKVM transparently switches to DVD Mode, which allows mounting larger images as virtual DVDs.**
+Unlike some other KVMs, JetKVM's CD/DVD Mode can handle images larger than 2.2GB, allowing you to mount larger images as an virtual optical drive, without any issues.
 
 ### Disk Mode
 

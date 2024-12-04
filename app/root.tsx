@@ -70,7 +70,6 @@ function App() {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-
         <Meta />
         <Links />
         <script
@@ -84,6 +83,9 @@ function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <a rel="me" className="hidden" href="https://mastodon.social/@jetkvm">
+          Mastodon
+        </a>
       </body>
     </html>
   );

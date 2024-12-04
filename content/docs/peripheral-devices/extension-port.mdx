@@ -16,13 +16,53 @@ The **JetKVM** features an **RJ-11 extension port** on the back, designed to pro
 
 The **RJ-11 extension port** functions as a serial port, allowing communication with the JetKVM. This port is key to adding extra hardware and functionality to the device, making it a highly versatile component.
 
-JetKVM already offers optional add-ons that use the extension port, including:
+These add-ons are available for purchase, but the port isn't limited to just JetKVM's accessories—**it's open for anyone to develop their own custom extensions**.
 
-- **ATX Power Control**: Manage the power state of your connected computers.
-- **Serial Console**: Direct access to the device's serial console for diagnostics and low-level control.
-- **DC Power Control**: Control the power states of connected devices.
+### ATX Power Control
 
-These add-ons are available for purchase, but the port isn't limited to just JetKVM’s accessories—**it’s open for anyone to develop their own custom extensions**.
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/atx_extension_preview_2.png"
+    alt="ATX Power Control"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
+A control board that manages computer power states. It also includes a USB-C port for connecting
+a 5V power supply. This can then power the JetKVM through the RJ11 cable. Alternatively, 5V
+power can be supplied through a pin header.
+
+The ATX Power Control comes with a PCIe slot cover bracket, allowing for clean cable routing through your PC case - without requiring an actual PCIe slot.
+
+Each pin features dual headers: one set for KVM control and another for the original front panel buttons—meaning you don't have to choose between them. Both can be connected simultaneously.
+
+### DC Power Control
+
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/dc_extension_preview_2.png"
+    alt="DC Power Control"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
+
+The DC Power Control extension enables power management for connected DC-powered devices, such as mini PCs or NAS units, using a standard 5.5×2.5 mm connector. It supports DC input ranging from **12 to 20 volts**, and we're **including adapters to support 5.5×2.1 mm** connections as well.
+
+Included in the extension package:
+
+- Extension board (pictured) + Case (In Design)
+- 1x 5.5/2.5 mm male to 5.5/2.5 mm male cable
+- 1x 5.5/2.1 mm female to 5.5/2.5 mm male adapter
+- 1x 5.5/2.5 mm female to 5.5/2.1 mm male adapter
+
+Note: the extension can **also power the JetKVM itself through the RJ-11 connection**, streamlining setup and reducing the need for additional power sources.
+
+### Serial Console
+
+Direct access to the device's serial console for diagnostics and low-level control. Unlike the other extensions, that ship with the JetKVM device, this extension will ship separately. We're actively developing it, but a 3D render is not yet available.
 
 ## Customizing with the Extension Port
 
@@ -35,3 +75,18 @@ If you have specific needs for your workflow or want to create fun projects, the
 
 We encourage the community to build custom add-ons for JetKVM.
 If you create a hardware extension that works with the RJ-11 extension port, you'll be able to **submit a pull request** to the JetKVM project once the source code becomes available in early December when the first devices ship. We enthusiastically welcome contributions from the community and look forward to collaborating on new features that benefit all JetKVM users.
+
+## Build your own extensions
+
+The extension port is designed to unlock endless opportunities for hardware modifications. Using a standard RJ-11 connector, it provides power, I2C, and GPIO pins that make it easy to develop your own custom extensions.
+
+<Card className="mb-2 inline-block max-w-[320px] overflow-hidden">
+  <img
+    src="/extension_port_pinout.png"
+    alt="Extension Port Pinout"
+    style={{ margin: "0 auto" }}
+  />
+</Card>
+We're excited to see what creative solutions you'll build! Whether you're developing something
+for your personal use or planning to share it with the community, we're committed to supporting
+developers who want to contribute.

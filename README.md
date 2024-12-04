@@ -3,7 +3,7 @@
 
 ### JetKVM Website
 
-[Discord](https://discord.gg/pWpGMMEBCK) | [Website](https://jetkvm.com) | [Issues](https://github.com/jetkvm/kvm/issues) | [Docs](https://jetkvm.com/docs)
+[Discord](https://jetkvm.com/discord) | [Website](https://jetkvm.com) | [Issues](https://github.com/jetkvm/kvm/issues) | [Docs](https://jetkvm.com/docs)
 
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/jetkvm.svg?style=social&label=Follow%20%40JetKVM)](https://twitter.com/jetkvm)
 

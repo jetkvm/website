@@ -78,7 +78,7 @@ export default function IndexRoute() {
                       theme="blank"
                       LeadingIcon={DiscordIcon}
                       text="Join our Discord"
-                      to="https://discord.gg/Ky9v3tF7e5"
+                      to="https://jetkvm.com/discord"
                     />
                   </div>
                   <YCombinatorIcon className="w-32 text-black" />

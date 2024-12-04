@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-x-4 grayscale">
-            <ExtLink href="https://discord.gg/Ky9v3tF7e5">
+            <ExtLink href="https://jetkvm.com/discord">
               <DiscordIcon className="h-8 w-8 shrink-0" />
             </ExtLink>
           </div>

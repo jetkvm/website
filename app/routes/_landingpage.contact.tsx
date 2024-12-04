@@ -49,7 +49,7 @@ export default function ContactUsRoute() {
               />
               <div>
                 <LinkButton
-                  to="https://discord.gg/Ky9v3tF7e5"
+                  to="https://jetkvm.com/discord"
                   size="MD"
                   theme="light"
                   text="Discord Server"
