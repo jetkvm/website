@@ -1,0 +1,108 @@
+---
+title: "FAQs"
+description: "Frequently Asked Questions about the JetKVM Project"
+order: 4
+---
+
+Welcome to JetKVM. Below you'll find some of the most frequently asked questions.
+
+Still got a question? [Join us on Discord](https://jetkvm.com/discord).
+
+Got a question about the Kickstarter Campaign? [Check out the Kickstarter FAQ](ks-faq)
+
+---
+
+### How do I power the device?
+
+The **most common way to power the JetKVM is via it's USB-C port**, which will be connected to the computer you're
+controlling. Many computers have USB ports that are constantly powered, though you may need to enable it in the BIOS/UEFI
+setup. Some devices may have a marking on the constant-power USB port.
+
+However, **we understand that this might not be possible in every situation,** so here are some other options:
+
+- **Included USB-C Power/Data Splitter**: The JetKVM comes with a power/data splitter cable for the USB port, allowing
+you to connect one cable to a power source (_e.g., a 5v phone charger_) and the other to the target host for 
+keyboard & mouse control.
+
+- **DC Extension**: The DC extension allows the JetKVM to control the power-supply to a computer, but can also power
+the JetKVM device itself through the RJ11 cable, connected to the extension port.
+
+- **ATX Board Extension**: You can use a USB-C port, or header, on your ATX motherboard to power the JetKVM via the
+ATX extension, JetKVM will receive 5v over the RJ11 cable.
+
+### Is there/will there be a PoE version?
+
+The current JetKVM device does not accept Power over Ethernet, though you may be able to use a USB-C PoE splitter cable,
+or a PoE extension board.
+
+A PoE-capable version of JetKVM is on the roadmap.
+
+### Does it come with Tailscale?
+
+The device doesn't come with Tailscale pre-installed, though as the device is Linux-based, it should be possible to
+install. 
+
+However, this hasn't yet been tested. We'll update this page once it has.
+
+### Can I use the device without the Cloud features?
+
+**Yes,** the device is primarily designed to be accessed locally. **The cloud access feature is entirely opt-in.**
+
+Simply point your browser at the IP address shown on the display to access the KVM. You can bring your own VPN
+solution to access it remotely, if you'd rather not use the cloud.
+
+### Can I self-host the Cloud features?
+
+**Absolutely!**
+
+The JetKVM project will be fully open sourced in the coming days, please see [the Open Source](open-source) page for
+more information about that specifically.
+
+You'll be able to run the device/user registry service yourself, it's a simple Node.JS Express based service. 
+JetKVM uses WebRTC for video streaming and control. TURN is used to make this possible over the internet, 
+behind NAT and firewalls.
+
+### Does it work with KVM Switches?
+
+KVM switches haven't been tested yet, but there's no outstanding reason why they won't work. We'll update this page
+as the community starts testing it against their switches.
+
+### Does it work with _[device]_?
+
+**Most likely!**
+
+The JetKVM simply accepts a HDMI input signal for the display, and emulates a keyboard & mouse for controlling
+the computer.
+
+There's a great [community on Discord](https://jetkvm.com/discord) that you can join if you have any questions, or
+run into issues getting your JetKVM working.
+
+### Does the interface work on mobile?
+
+**Yes!**
+
+The web interface is written in React and works well on mobile devices; you'll be able to use JetKVM's built in
+virtual keyboard to control your computer.
+
+### Is the UI available in any languages other than English?
+
+**Not yet.** But don't worry, there isn't much text in the UI itself.
+
+There's an open feature request for UI localisation, and once the code is [made open source](open-source), the community
+will be able to contribute translations. 
+
+### Can JetKVM control power to the computer?
+
+**JetKVM has a number of ways to control power to the device it's connected to:**
+
+- [Wake-on-LAN](wake-on-lan): If your computer is on the same subnet, JetKVM can send it a Wake on LAN Magic Packet to
+power it up. The computer must support WoL, and it needs to be enabled in the UEFI/BIOS settings.
+
+- [DC Extension Board](../peripheral-devices/extension-port#dc-power-control): The DC extension board can control power-flow to a computer that has a DC
+input, as well as extracting power for itself.
+
+- [ATX Extension Board](../peripheral-devices/extension-port#atx-power-control): The ATX extension board can switch on a PC by triggering its power-switch ATX
+pins, in the same way the button on the front of your case does!
+
+**More to Come:** The extension port on JetKVM allows the community to create their own novel ways of controlling power
+to target devices.
