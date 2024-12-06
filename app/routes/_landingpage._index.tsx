@@ -14,7 +14,7 @@ export const meta: MetaFunction = ({ data }) => {
       "JetKVM - Control any computer remotely",
       "JetKVM is a high-performance, open-source KVM over IP (Keyboard, Video, Mouse) solution designed for efficient remote management of computers, servers, and workstations. Whether you're dealing with boot failures, installing a new operating system, adjusting BIOS settings, or simply taking control of a machine from afar, JetKVM provides the tools to get it done effectively.",
       "JetKVM - Control any computer remotely",
-      "Next generation KVM over IP",
+      "Next generation KVM over IP"
     ),
   ];
 };
@@ -81,7 +81,7 @@ export default function IndexRoute() {
                       to="https://jetkvm.com/discord"
                     />
                   </div>
-                  <YCombinatorIcon className="w-32 text-black" />
+                  <YCombinatorIcon className="md:block hidden w-32 text-black" />
                 </div>
               </Container>
             )}
