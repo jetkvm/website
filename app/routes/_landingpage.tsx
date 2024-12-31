@@ -1,9 +1,10 @@
 import LandingNavbar from "~/components/landingpage/LandingNavbar";
 import Container from "~/components/Container";
 
-import { HeadersFunction } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import { HeadersFunction, json } from "@remix-run/node";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import Footer from "~/components/landingpage/Footer";
+import { getGitHubStars } from "../services/github.server";
 
 export const headers: HeadersFunction = () => {
   /*
@@ -39,11 +40,17 @@ export const headers: HeadersFunction = () => {
   };
 };
 
+export const loader = async () => {
+  const githubStars = await getGitHubStars();
+  return json({ githubStars });
+};
+
 export default function LandingRootRoute() {
+  const { githubStars } = useLoaderData<typeof loader>();
   return (
     <div className="grid h-full ">
       <Container>
-        <LandingNavbar />
+        <LandingNavbar githubStars={githubStars} />
       </Container>
       <div className="h-full">
         <Outlet />
