@@ -32,13 +32,67 @@ sudo ./upgrade_tool uf update.img
 #### Prepare your computer for flashing
 
 1. Download and install the [RK Driver Assistant](https://files.luckfox.com/wiki/Luckfox-Pico/Software/DriverAssitant_v5.12.zip).
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/driverinstall.png"
+    alt="Driver Install"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
+
 2. Download and extract the [flashing tool](https://files.luckfox.com/wiki/Luckfox-Pico/Software/SocToolKit_v1.98_20240705_01_win.zip).
 3. Open the software (right-click and run as administrator) and select RV1106 when prompted for chip selection
-
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/rv1106.png"
+    alt="Chip Selection"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
 #### Flashing the Latest Firmware
 
 1. Boot JetKVM into DFU mode (instructions above), making sure you are using the USB from the computer you plan to flash with to power the JetKVM
 2. Make sure USB is selected and that "Maskrom 22" is in the field to the right. If not, you need to make sure the driver is successfully installed
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/maskrom.png"
+    alt="maskrom"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
 3. Click "Firmware" and select the [JetKVM Image](https://api.jetkvm.com/releases/system_recovery/latest) you previously downloaded
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/firmware.png"
+    alt="Firmware"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
 4. Click upgrade
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/upgrade.png"
+    alt="Upgrade"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
 5 Once the firmware update completed, remove power from the JetKVM and it will be factory reset.
+<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+  <img
+    src="/upgradeok.png"
+    alt="Completed Upgrade"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
