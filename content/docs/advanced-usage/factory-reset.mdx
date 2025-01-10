@@ -17,12 +17,27 @@ To reset the device, you will use DFU Mode, which allows you to flash the firmwa
 3. Insert a needle into the hole and press & hold the button inside before reconnecting the USB cable.
 4. Hold the needle for three seconds, then release. Your device is now in DFU Mode.
 
-##### Flashing the Latest Firmware:
+#### Flashing the Latest Firmware
 
-1. Download the firmware update tool from [MacOS & Linux](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/) or [Windows](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1106/Luckfox-Pico-Ultra-W/Luckfox-Pico-emmc-burn-image/#driver-installation).
+##### MacOS & Linux:
+
+1. Download the firmware update tool from [here](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/)
 2. Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
 3. Once you have the firmware and update tool, run the following command in your terminal to flash the firmware, while being in DFU Mode:
 
 ```sh
 sudo ./upgrade_tool uf update.img
 ```
+
+##### Windows:
+
+1. Download and install the ADB driver from this [link](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-Ultra-W/Luckfox-Pico-emmc-burn-image/#driver-installation).
+2. Download the flashing tool `Soc ToolKit` from this [link](https://wiki.luckfox.com/Luckfox-Pico/Luckfox-Pico-RV1106/Luckfox-Pico-Ultra-W/Luckfox-Pico-emmc-burn-image/#flashing-emmc).
+3. Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
+4. Launch the Soc ToolKit application in _Administrator mode_ and select `RV1106` when the application launches.
+5. Start the JetKVM in DFU Mode.
+6. Select the USB device from the dropdown menu in Soc ToolKit, if this is not populated there is an issue with the USB connection.
+7. Click the `Firmware` button and select the `.img` firmware file.
+8. Click the `Upgrade` button to start the flashing process.
+9. You should see the flashing process start in Soc ToolKit and the device will reboot.
+10. Make yourself a cup of ☕, you've earned it!
