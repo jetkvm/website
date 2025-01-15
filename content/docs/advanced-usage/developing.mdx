@@ -10,7 +10,17 @@ JetKVM is built with developers in mind, providing tools and modes that allow yo
 
 Developer Mode unlocks SSH access to the JetKVM device, allowing you to customize or modify the system. When you enable Developer Mode, you must provide an **SSH public key**, as JetKVM uses key-based authentication. **We do not allow password-based SSH logins for security reasons.**
 
+The **SSH public key** is in the format:
+```bash
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUcfQTXAJVnEazxLP0lSr0DOvfU2JemrmPhj7BBnIik jetkvm
+```
+
 Once enabled, you can SSH into the JetKVM device, explore the system, and run your own applications. The system runs on a lightweight Linux environment using **BusyBox** as the core user space and **DropBear** as the SSH server.
+
+Use the following ssh command:
+```bash
+ssh root@<jetkvm ip>
+```
 
 ## DFU Mode (Device Firmware Update)
 
