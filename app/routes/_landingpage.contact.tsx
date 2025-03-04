@@ -37,17 +37,24 @@ export default function ContactUsRoute() {
           </Card>
           <Card className="p-6">
             <h3 className="text-2xl font-bold">Shipping</h3>
-            <p className="mt-1 text-slate-600">For questions about shipping, please contact us at the email address below.</p>
-            <p className="mt-4 text-blue-700">
-              <a href="mailto:shipping@jetkvm.com">shipping@jetkvm.com</a>
+            <p className="mt-1 text-slate-600">
+              For questions about shipping or delivery status, please check our
+              Kickstarter FAQ page for the most up-to-date information.
             </p>
+            <LinkButton
+              to="/docs/getting-started/ks-faq"
+              size="MD"
+              theme="light"
+              text="Kickstarter FAQ"
+              className="mt-4"
+            />
           </Card>
 
           <Card className="p-6">
             <h3 className="text-2xl font-bold">Sales & Distributors</h3>
             <p className="mt-1 text-slate-600">
-              Interested in large quantities, data-center KVM form factors or re-selling. Let's discuss how we can meet
-              your specific requirements.
+              Interested in large quantities, data-center KVM form factors or re-selling.
+              Let's discuss how we can meet your specific requirements.
             </p>
             <p className="mt-4 text-blue-700">
               <a href="mailto:sales@jetkvm.com">sales@jetkvm.com</a>
