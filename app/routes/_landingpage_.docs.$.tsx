@@ -144,12 +144,6 @@ export default function DocsRoute() {
     section.links.find(link => link.href === location.pathname),
   );
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
 
   const Component = useMemo(() => getMDXComponent(code), [code]);
   return (
