@@ -28,7 +28,7 @@ const themes = {
 };
 
 const btnVariants = cva({
-  base: "outline-none font-display text-center font-semibold justify-center items-center duration-75 shrink-0 transition-colors leading-tight border rounded-md select-none group-focus:outline-none group-focus:ring-2 group-focus:ring-offset-2 group-focus:ring-blue-700 group-disabled:opacity-60 group-disabled:pointer-events-none",
+  base: "outline-none font-display text-center font-medium justify-center items-center duration-75 shrink-0 transition-colors leading-tight border rounded-md select-none group-focus:outline-none group-focus:ring-2 group-focus:ring-offset-2 group-focus:ring-blue-700 group-disabled:opacity-60 group-disabled:pointer-events-none",
   variants: {
     size: sizes,
     theme: themes,
