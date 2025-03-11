@@ -3,8 +3,9 @@ import clsx from "clsx";
 import ExtLink from "~/components/ExtLink";
 import type { ReactNode } from "react";
 import React from "react";
-import { Button, LinkButton } from "~/components/Button";
+import { LinkButton } from "~/components/Button";
 import { GitHubIcon } from "../Icons";
+import KickstarterIcon from "~/assets/kickstarter-icon.svg";
 
 type LinkProps = {
   to: string;
@@ -84,6 +85,16 @@ export default function LandingNavbar({ githubStars }: { githubStars: number | n
             theme="light"
             to="https://app.jetkvm.com"
             text="Cloud Dashboard"
+          />
+          <div className="h-3/4 w-px bg-slate-800/20" />
+          <LinkButton
+            size="SM"
+            theme="primary"
+            LeadingIcon={({ className }) => (
+              <img className={className} src={KickstarterIcon} />
+            )}
+            to="https://shiphelp.jetkvm.com"
+            text="Track Kickstarter Reward"
           />
         </div>
       </div>
