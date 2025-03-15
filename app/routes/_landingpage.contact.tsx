@@ -4,7 +4,7 @@ import Container from "~/components/Container";
 import { LinkButton } from "~/components/Button";
 import { openGraphTags } from "../utils";
 import { MetaFunction } from "@remix-run/node";
-import { DiscordIcon } from "../components/Icons";
+import KickstarterIcon from "~/assets/kickstarter-icon.svg";
 
 export const meta: MetaFunction = () => {
   return [
@@ -38,16 +38,21 @@ export default function ContactUsRoute() {
           <Card className="p-6">
             <h3 className="text-2xl font-bold">Shipping</h3>
             <p className="mt-1 text-slate-600">
-              For questions about shipping or delivery status, please check our
-              Kickstarter FAQ page for the most up-to-date information.
+              For questions about shipping or delivery status of your Kickstarter reward,
+              please use our tracking tool to get real-time updates on your order.
             </p>
-            <LinkButton
-              to="/docs/getting-started/ks-faq"
-              size="MD"
-              theme="light"
-              text="Kickstarter FAQ"
-              className="mt-4"
-            />
+
+            <div className="mt-4">
+              <LinkButton
+                size="MD"
+                theme="primary"
+                LeadingIcon={({ className }) => (
+                  <img className={className} src={KickstarterIcon} />
+                )}
+                to="https://shiphelp.jetkvm.com"
+                text="Track Kickstarter Reward"
+              />
+            </div>
           </Card>
 
           <Card className="p-6">
