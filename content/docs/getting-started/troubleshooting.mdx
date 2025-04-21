@@ -1,67 +1,68 @@
 ---
 title: "Troubleshooting"
-description: "Troubleshoot common JetKVM issues. Learn how to check connection status, verify USB connections, use the Troubleshooting Mode, and submit bug reports when needed for smooth remote computer management."
+description: "Troubleshoot common JetKVM issues with a focus on resolving the Loading Video Stream problem and ensuring proper WebRTC connections."
 order: 1
 ---
 
-When issues arise with JetKVM, there are a few key steps you can take to identify and resolve the problem. Below, we'll guide you through the general approach to troubleshooting, highlighting the areas to check first and what each status or state means.
+## Loading Video Stream Issue
 
-## Check Connection Status
+The most common issue with JetKVM is getting stuck at "Loading video stream..." when trying to connect to your device. This problem is typically caused by WebRTC connection issues between your browser and the JetKVM device.
 
-The first step in troubleshooting is verifying the connection status between your device and the server. JetKVM provides a quick visual check in the **top-right corner of the dashboard**, where you'll see icons that represent the current connection status for both:
+### 1. Update JetKVM Firmware
 
-- **WebRTC Connection**: This represents the connection to the server. If this is disrupted, you'll see a message explaining the issue and suggested actions.
-- **USB Connection**: This shows the status of the USB connection between your JetKVM device and the target host.
+- Navigate to the IP address displayed on your JetKVM device
+- Go to Settings → Check for Updates
+- If an update is available, apply it and check if the issue is resolved
 
-If both connections are **green** and stable but you're still encountering issues, proceed to the next steps.
+### 2. Verify WebRTC Functionality
 
-## Verify USB Connection
+- Temporarily disable all browser extensions that might block or alter WebRTC connections
+- If using a VPN or corporate network, try temporarily disconnecting as these can block WebRTC traffic
 
-If the USB connection icon is **grayed out**, there's likely an issue with the USB cable connection. Common reasons include:
+### 3. Browser-Specific Settings
 
-- **USB not attached**: Check the physical connection and make sure the cable is properly inserted.
-- **USB suspended**: This state usually indicates a low power mode or a suspension due to inactivity.
+**For Chromium:**
+- Navigate to `chrome://flags/#webrtc-ip-handling-policy` in your address bar
+- Look for "WebRTC IP Policy"
+- If it's set to "Disable non proxied UDP", change it to "Default"
+- Restart your browser for the changes to take effect
 
-For a more detailed state of the USB connection, move to the next step and enable Troubleshooting Mode.
+**For Microsoft Edge:**
 
-## Enable Troubleshooting Mode (Debug Info)
+- In your address bar, enter `edge://settings/content/mediaAutoplay`
+- Ensure your JetKVM URL is in the Allow list, as Edge may block autoplay by default
 
-If the icons aren't giving enough context or you're still unable to identify the issue, the **Troubleshooting Mode** in the **Settings** provides deeper insight into what's happening. Here's how to access and use it:
+**For Vivaldi:**
 
-- **Go to Settings** in the WebUI.
-- Switch on **Troubleshooting Mode** at the bottom of the menu.
+- Navigate to `vivaldi://flags/#ignore-gpu-blocklist`
+- Enable "Override software rendering list" (ignore the GPU blocklist)
+- Go to Vivaldi Settings → Webpages and ensure "Use hardware acceleration when available" is enabled
+- Make sure "Broadcast IP for best WebRTC Performance" is enabled
+- Restart the browser after making these changes
 
-Once enabled, you'll see additional diagnostic details along the bottom of the interface, such as:
+**For Firefox:**
 
-- **Resolution & Video Size**:
+- Navigate to `about:config`
+- Search for `media.peerconnection.enabled`
+- Set it to `true`
+- Restart the browser after making these changes
 
-  - _Resolution_: This shows the actual resolution being streamed from the KVM device.
-  - _Video Size_: This reflects the size of the video element on the browser window, adjusting dynamically based on browser dimensions.
+### 4. Check Browser Autoplay Settings
 
-- **Mouse Pointer Position**: This shows the X and Y coordinates of the mouse pointer in real-time, which helps debug input issues.
+- As noted by some users, browsers may block video autoplay by default
+- Ensure autoplay settings for video/audio are enabled for the JetKVM site
 
-- **USB State**: You'll see the raw state of the USB connection:
+### Still Having Issues?
 
-  - **Configured**: The USB connection is functioning as expected.
-  - **Attached**: The device is physically connected but may still be initializing.
-  - **Not Attached**: The USB device is not detected.
-  - **Suspended**: The connection is idle or in a low-power state.
-  - **Addressed**: The USB device is recognized and assigned an address but not yet fully functional.
+If none of the above steps resolve your issue:
 
-- **HDMI State**: This shows the status of the HDMI signal from the target host:
-  - **Ready**: Everything is functioning properly.
-  - **No Signal**: The target device isn't sending a video signal. Check cables or ensure the device is powered on.
-  - **No Lock/Out of Range**: The signal is either unsupported or outside the allowed range (e.g., resolution or refresh rate too high).
-  - **Connecting**: The HDMI connection is initializing and should be ready soon.
+1. Visit our [GitHub issue #84](https://github.com/jetkvm/kvm/issues/84) where we're actively monitoring this problem
 
-## When All Else Fails
+2. When reporting your issue, please include:
+   - The data shown at the bottom of the video feed when Troubleshooting Mode is enabled (Settings > Advanced > Enable Troubleshooting Mode)
+   - Your network configuration (router type, network setup)
+   - The devices/computers you've tried connecting to
+   - Any browsers you've tested with and their results
+   - The JetKVM app version and system version
 
-If none of the above steps resolve your issue and everything seems to be connected, but JetKVM is still not functioning, we recommend submitting a bug report. Here's how to do that:
-
-1. **Go to GitHub** and navigate to our issues page. (To be added at launch, when source code is available.)
-2. **Fill out the bug report template**. Include important information such as:
-   - The **JetKVM app version**.
-   - The **system version** of your KVM device.
-   - A brief description of the problem and context (e.g., when it happens, how often, any notable actions that caused the issue).
-
-This will help us quickly identify and resolve the problem for you.
+Our team is actively working to resolve these connection issues with each firmware update.
