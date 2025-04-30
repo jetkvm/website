@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-t-slate-300 py-4 text-xs leading-none text-slate-500 md:text-sm">
-          © 2024 BuildJet, Inc. - All rights reserved.
+          © 2025 BuildJet, Inc. - All rights reserved.
         </div>
       </Container>
     </footer>
