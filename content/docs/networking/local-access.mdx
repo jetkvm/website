@@ -25,6 +25,32 @@ You can modify the password settings at any time, either during the onboarding p
 - **Update Password:** You can update the password if needed by entering a new one.
 - **Delete Password:** This action removes the password, allowing password-less access to the device.
 
+## Outbound Internet Connectivity
+
+The following outbound connectivity is required, from the JetKVM towards the Internet:
+
+### JetKVM System Updates
+
+Updates use HTTPS (tcp/443) towards the following FQDNs:
+
+- update.jetkvm.com
+- api.jetkvm.com
+- app.jetkvm.com
+
+### Time Synchronization
+
+Users have the option to select NTP (udp/123) and/or HTTP (tcp/80) in the Network Settings, for time synchronization to happen towards the following FQDNs:
+
+- time.apple.com
+- time.aws.com
+- time.windows.com
+- time.google.com
+- time.cloudflare.com
+- 0.pool.ntp.org
+- 1.pool.ntp.org
+- 2.pool.ntp.org
+- 3.pool.ntp.org
+
 ## Reset Password
 
 If you've forgotten your local password, there are two ways to reset it:
