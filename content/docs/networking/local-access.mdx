@@ -41,15 +41,21 @@ Updates use HTTPS (tcp/443) towards the following FQDNs:
 
 Users have the option to select NTP (udp/123) and/or HTTP (tcp/80) in the Network Settings, for time synchronization to happen towards the following FQDNs:
 
+NTP (udp/123):
 - time.apple.com
 - time.aws.com
 - time.windows.com
 - time.google.com
-- time.cloudflare.com
+- time.cloudflare.com (hardcoded to IPv4 162.159.200.123 and IPv6 2606:4700:f1::123)
 - 0.pool.ntp.org
 - 1.pool.ntp.org
 - 2.pool.ntp.org
 - 3.pool.ntp.org
+
+HTTP (tcp/80):
+- http://www.gstatic.com/generate_204
+- http://cp.cloudflare.com/
+- http://edge-http.microsoft.com/captiveportal/generate_204
 
 ## Reset Password
 
