@@ -59,7 +59,7 @@ function transformToHierarchy(headings: Heading[]): TableOfContentsType[] {
         children: [],
       };
       tableOfContents.push(currentParent);
-    } else if (heading.level === 3 || heading.level === 4) {
+    } else if (heading.level === 3) {
       if (currentParent) {
         currentParent.children.push({
           id: heading.id,

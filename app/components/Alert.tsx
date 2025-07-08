@@ -12,7 +12,7 @@ export default function Alert({
   BtnElm?: React.ReactNode;
 }) {
   return (
-    <Card className="bg-yellow-50 px-5 py-6 outline-yellow-700/40">
+    <Card className="bg-yellow-50 px-4 py-5 outline-yellow-700/40">
       <div className="flex justify-between">
         <div className="flex items-center gap-x-4">
           <ExclamationCircleIcon
@@ -21,7 +21,7 @@ export default function Alert({
           />
           <div className="space-y-1.5">
             <h3 className="text-base font-bold leading-none text-black">{headline}</h3>
-            <div className="text-sm leading-none text-yellow-900">{description}</div>
+            <div className="text-sm leading-snug text-yellow-900">{description}</div>
           </div>
         </div>
         {BtnElm && BtnElm}
