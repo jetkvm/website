@@ -22,6 +22,7 @@ The most common issue with JetKVM is getting stuck at "Loading video stream..." 
 ### 3. Browser-Specific Settings
 
 **For Chromium:**
+
 - Navigate to `chrome://flags/#webrtc-ip-handling-policy` in your address bar
 - Look for "WebRTC IP Policy"
 - If it's set to "Disable non proxied UDP", change it to "Default"
@@ -45,12 +46,18 @@ The most common issue with JetKVM is getting stuck at "Loading video stream..." 
 - Navigate to `about:config`
 - Search for `media.peerconnection.enabled`
 - Set it to `true`
+- Also search for `media.webrtc.hw.h264.enabled` and ensure it is set to `true`
+- Make sure the OpenH264 plugin is enabled under `about:addons > Plugins`
 - Restart the browser after making these changes
 
 ### 4. Check Browser Autoplay Settings
 
 - As noted by some users, browsers may block video autoplay by default
 - Ensure autoplay settings for video/audio are enabled for the JetKVM site
+
+### 5. Linux users: Try Flatpak Firefox
+
+If you're on Linux (especially Fedora), try installing Firefox via **Flatpak from Flathub** instead of using the system package. This version has better media codec support and resolves video stream issues in many cases.
 
 ### Still Having Issues?
 
