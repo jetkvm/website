@@ -40,8 +40,40 @@ html {
   @apply scroll-smooth;
 }
 
+table {
+  @apply !text-[13px];
+}
+
+thead {
+  @apply rounded-md bg-blue-100/50;
+}
+
+th,
+thead {
+  @apply pt-2;
+}
+
+thead th:first-child,
+tbody td:first-of-type {
+  @apply !pl-4;
+}
+
+thead th:not(:first-of-type),
+tbody td:not(:first-of-type) {
+  @apply text-center;
+}
+
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
+  @apply !hidden;
+}
+
+.prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  @apply not-italic bg-blue-100/50 p-1 rounded-md pl-4 py-2;
+}
+
+
 td strong {
-  @apply whitespace-nowrap font-display text-base font-bold text-black;
+  @apply whitespace-nowrap font-display font-bold text-black;
 }
 
 td a {
@@ -49,7 +81,7 @@ td a {
 }
 
 th {
-  @apply whitespace-nowrap font-display text-base text-black;
+  @apply whitespace-nowrap font-display text-black;
 }
 
 body {
