@@ -1,28 +1,44 @@
 ---
-title: "OTA Updates"
+title: "Updates"
 description: "Understand JetKVM's over-the-air (OTA) update system, including automatic updates, manual checks, development channel, and rolling releases. Learn how to keep your device up-to-date with the latest features and improvements."
 order: 2
 ---
 
-JetKVM supports over-the-air (OTA) updates, which automatically install new software versions to keep your device up-to-date with the latest features, bug fixes, and improvements.
+## JetKVM
 
-## Automatic Updates
+JetKVM supports over-the-air (OTA) updates, which automatically install new software versions to keep your device up-to-date with the latest features, bug fixes, and improvements.
 
 By default, **JetKVM is set to automatically update**. The device will periodically check for new updates in the background. If a new update is available, it will be installed automatically. However, JetKVM is designed to avoid disruptions during active use.
 
 The update system will check for active webRTC connections, and **it will delay updates if you are currently controlling a device**. This ensures that you won't be interrupted in the middle of important tasks. If you have long-running webRTC connections, it's recommended to periodically check for updates manually to ensure your device stays current.
 
-## Manually Checking for Updates
-
-If you prefer, you can manually check for updates:
+If you prefer, you can disable automatic updates and manually check for updates:
 
 1. Go to the Settings in the JetKVM web UI.
 2. Click the Check for Update button to see if any new updates are available.
 3. If an update is available, you can choose to install it immediately.
 
-You also have the option to disable automatic updates in the Settings page if you'd prefer to manage updates manually.
+---
 
-## Rolling Releases
+## DC Extension
+
+**The DC Extension does very rarely need firmware updates**, which requires a manual flashing process. Unlike the main JetKVM device, the DC Extension cannot be updated over-the-air and must be flashed directly. New firmware updates can be found [here](https://github.com/jetkvm/dc-extension-firmware).
+
+**To update the DC Extension firmware:**
+
+1. **Disconnect all cables** - Remove any cables from the DC Extension.
+
+2. **Enter flash mode** - Press and hold the flash button (located between the DC 9V-20V port and the USB-C port) while connecting the USB-C cable from your DC Extension to your computer.
+
+3. **Device recognition** - The DC Extension will appear as a removable disk drive on your computer.
+
+4. **Flash the firmware** - Simply drag and drop the DC Extension firmware file onto the disk drive. The flashing process will begin automatically.
+
+5. **Complete the update** - The USB drive will automatically eject when the flashing process is complete, indicating that the DC Extension has been successfully updated and rebooted with the new firmware.
+
+**Note:** Make sure to use the correct firmware file specifically designed for the DC Extension, as using the wrong firmware could damage the device.
+
+## Release Process
 
 JetKVM employs a rolling release system for major updates to ensure stability across all devices. **When a new version is released, it is initially rolled out to only 10% of users**. The rollout gradually expands until 100% of devices are updated. This approach helps mitigate risks by preventing widespread issues in case a release encounters unforeseen problems.
 
