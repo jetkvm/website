@@ -73,3 +73,36 @@ If none of the above steps resolve your issue:
    - The JetKVM app version and system version
 
 Our team is actively working to resolve these connection issues with each firmware update.
+
+## ATX Power Control Not Working
+
+If your ATX Power Control Extension isn't responding when you try to power on, reset, or shut down your PC remotely, follow these troubleshooting steps to identify and resolve the issue.
+
+### 1. Check Motherboard `F_PANEL` Connection
+
+**Motherboard `F_PANEL` Connection:**
+- Verify the ribbon cables are properly connected to your motherboard's `F_PANEL` header
+- Double-check the pin layout matches your motherboard manual - this is the most common source of issues
+- Ensure polarity (+/-) is correct for all connections, especially LED pins
+
+### 2. Test Manual Power Button
+
+- Test that your PC can still be powered on manually using the front panel power button
+- If the front panel power button doesn't work, there may be an issue with your `F_PANEL` connections
+
+### 3. Verify Front Panel Cable Connections
+
+Ensure your front panel cables are properly connected to the correct pins on the ATX board:
+- **Power SW** connects to **BTN PWR + / –**
+- **Reset SW** connects to **BTN RST + / –**
+- **Power LED** connects to **LED PWR + / –** (polarity matters)
+- **HDD LED** connects to **LED HDD + / –** (polarity matters)
+
+### Still Having Issues?
+
+If your ATX power control still isn't working after following these steps, please contact us at contact@jetkvm.com with:
+- Your motherboard model and manual reference
+- Photos of your wiring setup
+- Description of which specific functions aren't working
+
+
