@@ -18,17 +18,20 @@ The **RJ-12 extension port** functions as a serial port, allowing communication 
 
 These add-ons are available for purchase, but the port isn't limited to just JetKVM's accessories—**it's open for anyone to develop their own custom extensions**.
 
+---
+
 ### ATX Power Control
 
-<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+<Card className="mb-2 inline-block max-w-[320px] overflow-hidden bg-slate-100">
   <img
-    src="/atx_extension_preview_2.png"
+    src="/atx_extension.png"
     alt="ATX Power Control"
     style={{
       margin: "0 auto",
     }}
   />
 </Card>
+
 A control board that manages computer power states. It also includes a USB-C port for connecting
 a 5V power supply. This can then power the JetKVM through the RJ11 cable. Alternatively, 5V
 power can be supplied through a pin header.
@@ -37,11 +40,13 @@ The ATX Power Control comes with a PCIe slot cover bracket, allowing for clean c
 
 Each pin features dual headers: one set for KVM control and another for the original front panel buttons—meaning you don't have to choose between them. Both can be connected simultaneously.
 
+---
+
 ### DC Power Control
 
-<Card className="mb-2 inline-block max-w-[480px] overflow-hidden">
+<Card className="mb-2 inline-block max-w-[320px] overflow-hidden bg-slate-100">
   <img
-    src="/dc_extension_preview_2.png"
+    src="/dc_extension_angle.png"
     alt="DC Power Control"
     style={{
       margin: "0 auto",
@@ -61,9 +66,25 @@ The extension can **also power the JetKVM itself through the RJ-12 connection**,
 
 Note: Previously, we wrote that we included a two more adapter in the extension package. This was incorrect. We are including a only 5.5/2.5 mm male to 5.5/2.5 mm cable in the extension package.
 
+---
+
 ### Serial Console
 
-Direct access to the device's serial console for diagnostics and low-level control. Unlike the other extensions, that ship with the JetKVM device, this extension will ship separately. We're actively developing it, but a 3D render is not yet available.
+<Card className="mb-2 inline-block max-w-[320px] overflow-hidden bg-slate-100">
+  <img
+    src="/serial_extension.png"
+    alt="DC Power Control"
+    style={{
+      margin: "0 auto",
+    }}
+  />
+</Card>
+
+Extend your JetKVM capabilities with serial console access. This extension provides RS-232 connectivity, allowing you to access serial consoles directly from your browser through the JetKVM interface.
+
+Connect to devices with either RS-232 serial ports commonly found on network equipment, servers, and embedded systems.
+
+The extension integrates seamlessly with your JetKVM setup, providing reliable serial communication for configuration, troubleshooting, and remote management tasks.
 
 ## Customizing with the Extension Port
 
