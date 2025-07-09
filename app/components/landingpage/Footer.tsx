@@ -21,6 +21,7 @@ const FooterLink = ({
 );
 
 export default function Footer() {
+  const CurrentYear = new Date().getFullYear();
   return (
     <footer className="border-t border-t-slate-800/20 bg-white">
       <Container>
@@ -40,7 +41,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-t-slate-300 py-4 text-xs leading-none text-slate-500 md:text-sm">
-          © 2025 BuildJet, Inc. - All rights reserved.
+          © 2024-{CurrentYear} BuildJet, Inc. - All rights reserved.
         </div>
       </Container>
     </footer>
