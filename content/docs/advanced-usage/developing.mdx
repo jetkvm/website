@@ -10,7 +10,55 @@ JetKVM is built with developers in mind, providing tools and modes that allow yo
 
 Developer Mode unlocks SSH access to the JetKVM device, allowing you to customize or modify the system. When you enable Developer Mode, you must provide an **SSH public key**, as JetKVM uses key-based authentication. **For security reasons, you can not use your JetKVM password for SSH logins.**
 
-Once enabled, you can SSH into the JetKVM device, explore the system, and run your own applications. The system runs on a lightweight Linux environment using **BusyBox** as the core user space and **DropBear** as the SSH server.
+### Generating an SSH Key
+
+Before you can enable Developer Mode, you need to generate an SSH key pair.
+
+**On macOS and Linux:**
+
+1.  Open a terminal window.
+2.  Run the following command to generate a new SSH key pair:
+    ```sh
+    ssh-keygen -t rsa -b 4096
+    ```
+3.  You will be prompted to enter a file in which to save the key. Press **Enter** to accept the default location (`~/.ssh/id_rsa`).
+4.  You will be asked to enter a passphrase. This is optional but recommended for extra security.
+5.  Your public key will be saved to `~/.ssh/id_rsa.pub`.
+
+**On Windows:**
+
+1.  Open PowerShell.
+2.  Run the following command to generate a new SSH key pair:
+    ```powershell
+    ssh-keygen -t rsa -b 4096
+    ```
+3.  You will be prompted to enter a file in which to save the key. Press **Enter** to accept the default location (`C:\\Users\\YourUsername\\.ssh\\id_rsa`).
+4.  You will be asked to enter a passphrase. This is optional but recommended for extra security.
+5.  Your public key will be saved to `C:\\Users\\YourUsername\\.ssh\\id_rsa.pub`.
+
+### Adding Your SSH Key to JetKVM
+
+1.  Navigate to the JetKVM settings page.
+2.  Go to the **Advanced** tab.
+3.  Check the box to **Enable Developer Mode**.
+4.  Open your public key file (`~/.ssh/id_rsa.pub` or `C:\\Users\\YourUsername\\.ssh\\id_rsa.pub`) with a text editor and copy the entire content.
+5.  Paste the public key into the input box and save the changes.
+
+### Connecting to JetKVM
+
+Once you have enabled Developer Mode and added your SSH public key, you can connect to the JetKVM device using an SSH client.
+
+1.  Open a terminal (on macOS/Linux) or PowerShell (on Windows).
+2.  Use the following command to connect to your JetKVM device:
+    ```sh
+    ssh root@<jetkvm-ip-address>
+    ```
+    Replace `<jetkvm-ip-address>` with the IP address of your JetKVM device.
+3.  If you set a passphrase for your SSH key, you will be prompted to enter it.
+
+The system runs on a lightweight Linux environment using **BusyBox** as the core user space and **DropBear** as the SSH server.
+
+For a full, in-depth guide on how to develop and contribute to the JetKVM, please see the [DEVELOPMENT.md](https://github.com/jetkvm/kvm/blob/dev/DEVELOPMENT.md) file on our GitHub.
 
 ## DFU Mode (Device Firmware Update)
 
