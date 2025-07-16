@@ -12,14 +12,14 @@ Developer Mode unlocks SSH access to the JetKVM device, allowing you to customiz
 
 ### Generating an SSH Key
 
-Before you can enable Developer Mode, you need to generate an SSH key pair. The email address in the command is an optional comment to help you identify the key later.
+Before you can enable Developer Mode, you need to generate an SSH key pair.
 
 **On macOS and Linux:**
 
 1.  Open a terminal window.
 2.  Run the following command to generate a new SSH key pair:
     ```sh
-    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ssh-keygen -t rsa -b 4096
     ```
 3.  You will be prompted to enter a file in which to save the key. Press **Enter** to accept the default location (`~/.ssh/id_rsa`).
 4.  You will be asked to enter a passphrase. This is optional but recommended for extra security.
@@ -30,7 +30,7 @@ Before you can enable Developer Mode, you need to generate an SSH key pair. The 
 1.  Open PowerShell.
 2.  Run the following command to generate a new SSH key pair:
     ```powershell
-    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ssh-keygen -t rsa -b 4096
     ```
 3.  You will be prompted to enter a file in which to save the key. Press **Enter** to accept the default location (`C:\\Users\\YourUsername\\.ssh\\id_rsa`).
 4.  You will be asked to enter a passphrase. This is optional but recommended for extra security.
