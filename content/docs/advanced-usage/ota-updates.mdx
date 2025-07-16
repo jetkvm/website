@@ -26,7 +26,7 @@ Please be advised that manual upgrades should only be performed if you are comfo
 
 ```bash
 export JETKVM_UPDATE_TMPFILE=$(mktemp) && \
-wget -c http://update.jetkvm.com/app/0.4.6/jetkvm_app -O $JETKVM_UPDATE_TMPFILE && \
+wget -c https://update.jetkvm.com/app/0.4.6/jetkvm_app -O $JETKVM_UPDATE_TMPFILE && \
 sha256sum $JETKVM_UPDATE_TMPFILE | grep 05c6930cc1202196515f3aef06b94add7207e13d0b5e09da05dc5302ed5a0650 && \
 chmod +x $JETKVM_UPDATE_TMPFILE && mv $JETKVM_UPDATE_TMPFILE /userdata/jetkvm/jetkvm_app.update && reboot
 ```
