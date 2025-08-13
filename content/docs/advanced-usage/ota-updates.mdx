@@ -18,6 +18,23 @@ If you prefer, you can disable automatic updates and manually check for updates:
 2. Click the Check for Update button to see if any new updates are available.
 3. If an update is available, you can choose to install it immediately.
 
+### Manual Upgrade
+
+If OTA is not possible, you can use the following commands to manually upgrade your JetKVM device. You can either run them over SSH or via the `Web Terminal` in the JetKVM web UI.
+
+Please be advised that manual upgrades should only be performed if you are comfortable with the command line, understanding the risks involved, and OTA is not possible.
+
+For example, to upgrade to version 0.4.6, you can run the following command:
+
+<!-- TODO: provide an API in cloud-api to do this -->
+
+```bash
+export JETKVM_UPDATE_TMPFILE=$(mktemp) && \
+wget -c http://update.jetkvm.com/app/0.4.6/jetkvm_app -O $JETKVM_UPDATE_TMPFILE && \
+sha256sum $JETKVM_UPDATE_TMPFILE | grep 05c6930cc1202196515f3aef06b94add7207e13d0b5e09da05dc5302ed5a0650 && \
+chmod +x $JETKVM_UPDATE_TMPFILE && mv $JETKVM_UPDATE_TMPFILE /userdata/jetkvm/jetkvm_app.update && reboot
+```
+
 ---
 
 ## DC Extension
