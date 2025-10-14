@@ -19,10 +19,32 @@ To reset the device, you will use DFU Mode, which allows you to flash the firmwa
 
 ##### Flashing the Latest Firmware:
 
-1. Download the firmware update tool from [Linux](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image/#5-image-flashing-linux-environment), [MacOS](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image#6-image-flashing-macos-environment) or [Windows](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image/#4-flashing-the-image-windows-environment).
-2. Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
-3. Once you have the firmware and update tool, run the following command in your terminal to flash the firmware, while being in DFU Mode:
+Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
 
-```sh
-sudo ./upgrade_tool uf update.img
-```
+### Windows
+
+#### Install Drivers
+
+1. Download [Driver Assistant](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/DriverAssitant_v5.14.zip)
+
+2. Open Driver Assistant to install the drivers for the board. There's no need to connect the board to the computer during this step.
+
+![Driver Assistant](/content/files/dfu-driver-assistant.png)
+
+#### Flash the Firmware
+
+1. Download and extract the [SocToolKit](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/SocToolKit_v2.5_20250701_01_win.zip) for Windows.
+
+2. Open `SocToolKit.exe`, then select `RV1106`.
+
+![SocToolKit](/content/files/dfu-soctoolkit-1.png)
+
+3. Enter your device into DFU Mode and connect the board to the computer.
+
+4. Navigate to the `Download` tab, check the `USB` radio then makesure the dropdown select is set to `Maskroom rockchip`.
+
+5. Click the `Firmware...` button, then select the firmware file you just downloaded.
+
+6. Click the `Upgrade` button to flash the firmware.
+
+![SocToolKit Complete](/content/files/dfu-soctoolkit-2.png)
