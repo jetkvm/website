@@ -17,9 +17,38 @@ To reset the device, you will use DFU Mode, which allows you to flash the firmwa
 3. Insert a needle into the hole and press & hold the button inside before reconnecting the USB cable.
 4. Hold the needle for three seconds, then release. Your device is now in DFU Mode.
 
-##### Flashing the Latest Firmware:
+## Flashing the Latest Firmware
 
 Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
+
+
+### Linux
+
+1. Clone the `rv1106-system` repository:
+
+```sh
+git clone https://github.com/jetkvm/rv1106-system.git
+```
+
+2. Run the following command to flash the firmware:
+
+```sh
+pushd tools/linux/Linux_Upgrade_Tool
+sudo ./upgrade_tool uf /path/to/your/firmware.img
+popd
+```
+
+### macOS
+
+1. Download the [upgrade_tool](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/upgrade_tool_v2.44_for_mac.zip) for macOS.
+
+2. Run the following command to flash the firmware:
+
+```sh
+pushd upgrade_tool_v2.44_for_mac
+sudo ./upgrade_tool uf /path/to/your/firmware.img
+popd
+```
 
 ### Windows
 
