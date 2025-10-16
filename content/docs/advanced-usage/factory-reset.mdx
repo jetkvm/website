@@ -17,12 +17,63 @@ To reset the device, you will use DFU Mode, which allows you to flash the firmwa
 3. Insert a needle into the hole and press & hold the button inside before reconnecting the USB cable.
 4. Hold the needle for three seconds, then release. Your device is now in DFU Mode.
 
-##### Flashing the Latest Firmware:
+## Flashing the Latest Firmware
 
-1. Download the firmware update tool from [Linux](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image/#5-image-flashing-linux-environment), [MacOS](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image#6-image-flashing-macos-environment) or [Windows](https://wiki.luckfox.com/Luckfox-PicoKVM/Flash-image/#4-flashing-the-image-windows-environment).
-2. Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
-3. Once you have the firmware and update tool, run the following command in your terminal to flash the firmware, while being in DFU Mode:
+Download the latest JetKVM firmware from [here](https://api.jetkvm.com/releases/system_recovery/latest).
+
+
+### Linux
+
+1. Clone the `rv1106-system` repository:
 
 ```sh
-sudo ./upgrade_tool uf update.img
+git clone https://github.com/jetkvm/rv1106-system.git
 ```
+
+2. Run the following command to flash the firmware:
+
+```sh
+pushd tools/linux/Linux_Upgrade_Tool
+sudo ./upgrade_tool uf /path/to/your/firmware.img
+popd
+```
+
+### macOS
+
+1. Download the [upgrade_tool](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/upgrade_tool_v2.44_for_mac.zip) for macOS.
+
+2. Run the following command to flash the firmware:
+
+```sh
+pushd upgrade_tool_v2.44_for_mac
+sudo ./upgrade_tool uf /path/to/your/firmware.img
+popd
+```
+
+### Windows
+
+#### Install Drivers
+
+1. Download [Driver Assistant](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/DriverAssitant_v5.14.zip)
+
+2. Open Driver Assistant to install the drivers for the board. There's no need to connect the board to the computer during this step.
+
+![Driver Assistant](/content/files/dfu-driver-assistant.png)
+
+#### Flash the Firmware
+
+1. Download and extract the [SocToolKit](https://github.com/jetkvm/rv1106-system/releases/download/v0.2.5/SocToolKit_v2.5_20250701_01_win.zip) for Windows.
+
+2. Open `SocToolKit.exe`, then select `RV1106`.
+
+![SocToolKit](/content/files/dfu-soctoolkit-1.png)
+
+3. Enter your device into DFU Mode and connect the board to the computer.
+
+4. Navigate to the `Download` tab, check the `USB` radio then make sure the dropdown select is set to `Maskroom rockchip`.
+
+5. Click the `Firmware...` button, then select the firmware file you just downloaded.
+
+6. Click the `Upgrade` button to flash the firmware.
+
+![SocToolKit Complete](/content/files/dfu-soctoolkit-2.png)
