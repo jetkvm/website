@@ -10,6 +10,7 @@ main() {
 	TAILSCALE_VERSION="1.88.1"
 	JETKVM_IP=""
 	AUTO_YES=false
+        CLEAN_INSTALL=false
 
 	# Parse command line arguments
 	while [ $# -gt 0 ]; do
@@ -20,6 +21,10 @@ main() {
 			;;
 		-y | --yes)
 			AUTO_YES=true
+			shift
+			;;
+		-c | --clean)
+			CLEAN_INSTALL=true
 			shift
 			;;
 		*)
@@ -37,6 +42,7 @@ main() {
 		echo "Options:"
 		echo "  -v, --version  Specify Tailscale version (default: $TAILSCALE_VERSION)"
 		echo "  -y, --yes      Automatically answer yes to confirmation prompt"
+		echo "  -c, --clean    Delete any existing tailscale data (will cause a new machine to be created)"
 		echo ""
 		echo "Examples:"
 		echo "  $0 192.168.1.64"
@@ -60,6 +66,11 @@ main() {
 		echo ""
 		echo "  Note: The device will be rebooted during installation"
 		echo ""
+
+		if [ "$CLEAN_INSTALL" = "true" ]; then
+			echo "  Note: New tailscale machine will be created (clean install)"
+			echo ""
+		fi
 
 		if [ -t 0 ]; then
 			# stdin is a TTY
@@ -155,19 +166,24 @@ main() {
 	echo "[6/7] Installing and configuring Tailscale on JetKVM..."
 	ssh -o ServerAliveInterval=1 -o ServerAliveCountMax=1 \
 		root@"$JETKVM_IP" \
-		"export TAILSCALE_VERSION=$TAILSCALE_VERSION; ash -s" 2>/dev/null <<'EOF' || true
+		"export TAILSCALE_VERSION=$TAILSCALE_VERSION CLEAN_INSTALL=$CLEAN_INSTALL; ash -s" 2>/dev/null <<'EOF' || true
   set -e
 
   cd /userdata
 
+  if [ "$CLEAN_INSTALL" = "true" ]; then
+    echo "       Removing old tailscale directory..."
+    rm -rf ./tailscale
+  fi
+  mkdir -p ./tailscale
+
   echo "       Extracting package..."
   tar xf ./tailscale.tgz
 
-  # Remove the old tailscale directory
-  rm -rf ./tailscale
+  # copy new tailscale files to the correct location (tailscale configure assumes this path)
+  cp -r ./tailscale_${TAILSCALE_VERSION}_arm/* ./tailscale/
 
-  # Move the new tailscale directory to the correct location (tailscale configure assumes this path)
-  mv "./tailscale_${TAILSCALE_VERSION}_arm" tailscale
+  rm -r ./tailscale_${TAILSCALE_VERSION}_arm ./tailscale.tgz
 
   echo "       Configuring Tailscale for JetKVM..."
   cd ./tailscale
