@@ -9,8 +9,10 @@ main() {
 
 	TAILSCALE_VERSION="1.88.1"
 	JETKVM_IP=""
+	SSH_CONFIG_NAME=""
 	AUTO_YES=false
-        CLEAN_INSTALL=false
+	CLEAN_INSTALL=false
+	POSITIONAL_COUNT=0
 
 	# Parse command line arguments
 	while [ $# -gt 0 ]; do
@@ -28,26 +30,42 @@ main() {
 			shift
 			;;
 		*)
-			JETKVM_IP="$1"
+			POSITIONAL_COUNT=$((POSITIONAL_COUNT + 1))
+			if [ "$POSITIONAL_COUNT" -eq 1 ]; then
+				JETKVM_IP="$1"
+			elif [ "$POSITIONAL_COUNT" -eq 2 ]; then
+				SSH_CONFIG_NAME="$1"
+			fi
 			shift
 			;;
 		esac
 	done
 
+	# Set SSH target based on whether config name is provided
+	if [ -n "$SSH_CONFIG_NAME" ]; then
+		SSH_TARGET="$SSH_CONFIG_NAME"
+	else
+		SSH_TARGET="root@$JETKVM_IP"
+	fi
+
 	if [ -z "$JETKVM_IP" ]; then
 		echo "ERROR: JetKVM IP address is required"
 		echo ""
-		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] <JETKVM_IP>"
+		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] <JETKVM_IP> [SSH_CONFIG_NAME]"
 		echo ""
 		echo "Options:"
-		echo "  -v, --version  Specify Tailscale version (default: $TAILSCALE_VERSION)"
-		echo "  -y, --yes      Automatically answer yes to confirmation prompt"
-		echo "  -c, --clean    Delete any existing tailscale data (will cause a new machine to be created)"
+		echo "  -v, --version    Specify Tailscale version (default: $TAILSCALE_VERSION)"
+		echo "  -y, --yes        Automatically answer yes to confirmation prompt"
+		echo "  -c, --clean      Delete any existing tailscale data (will cause a new machine to be created)"
+		echo ""
+		echo "Arguments:"
+		echo "  JETKVM_IP        IP address of the JetKVM device (required)"
+		echo "  SSH_CONFIG_NAME  Name of SSH config entry to use (optional)"
 		echo ""
 		echo "Examples:"
 		echo "  $0 192.168.1.64"
-		echo "  $0 -v 1.88.1 -y 192.168.1.64"
-		echo "  $0 --version 1.88.1 192.168.1.64"
+		echo "  $0 192.168.1.64 jetkvm"
+		echo "  $0 -v 1.88.1 -y 192.168.1.64 jetkvm"
 		echo ""
 		echo "Default Tailscale version: $TAILSCALE_VERSION (first version to support JetKVM)"
 		exit 1
@@ -63,6 +81,9 @@ main() {
 		echo ""
 		echo "  JetKVM IP:            $JETKVM_IP"
 		echo "  Tailscale Version:    $TAILSCALE_VERSION"
+		if [ -n "$SSH_CONFIG_NAME" ]; then
+			echo "  SSH Config:           $SSH_CONFIG_NAME"
+		fi
 		echo ""
 		echo "  Note: The device will be rebooted during installation"
 		echo ""
@@ -110,7 +131,7 @@ main() {
 	# First, test SSH connectivity without BatchMode to get proper error messages
 	SSH_TEST_OUTPUT=$(ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
 		-o PreferredAuthentications=publickey -o PubkeyAuthentication=yes -o PasswordAuthentication=no \
-		root@"$JETKVM_IP" 'echo "SSH OK"' 2>&1) || SSH_EXIT_CODE=$?
+		"$SSH_TARGET" 'echo "SSH OK"' 2>&1) || SSH_EXIT_CODE=$?
 
 	if [ "${SSH_EXIT_CODE:-0}" -ne 0 ]; then
 		echo ""
@@ -161,11 +182,11 @@ main() {
 	echo "       Package verification successful"
 
 	echo "[5/7] Transferring Tailscale package to JetKVM..."
-	ssh root@"${JETKVM_IP}" "cat > /userdata/tailscale.tgz" <"$TMP_FILE"
+	ssh "$SSH_TARGET" "cat > /userdata/tailscale.tgz" <"$TMP_FILE"
 
 	echo "[6/7] Installing and configuring Tailscale on JetKVM..."
 	ssh -o ServerAliveInterval=1 -o ServerAliveCountMax=1 \
-		root@"$JETKVM_IP" \
+		"$SSH_TARGET" \
 		"export TAILSCALE_VERSION=$TAILSCALE_VERSION CLEAN_INSTALL=$CLEAN_INSTALL; ash -s" 2>/dev/null <<'EOF' || true
   set -e
 
@@ -204,7 +225,7 @@ EOF
 	while [ "$i" -le 120 ]; do
 		echo "       Checking device status... ($i/120s)"
 		if ssh -q -o ConnectTimeout=2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-			root@"$JETKVM_IP" 'tailscale version' >/dev/null 2>&1; then
+			"$SSH_TARGET" 'tailscale version' >/dev/null 2>&1; then
 			echo "       JetKVM is back online with Tailscale installed!"
 			break
 		fi
@@ -220,7 +241,7 @@ EOF
 	done
 
 	echo "[7/7] Starting Tailscale service..."
-	ssh root@"$JETKVM_IP" "tailscale up"
+	ssh "$SSH_TARGET" "tailscale up"
 	echo ""
 	echo "SUCCESS: Tailscale installation completed!"
 	echo "         Your JetKVM device is now ready to connect to your Tailscale network."
