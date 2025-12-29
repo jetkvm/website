@@ -7,7 +7,9 @@ set -eu
 # up executing half a script.
 main() {
 
-	TAILSCALE_VERSION="1.88.1"
+	TAILSCALE_STABLE="$(echo $(curl -fsSL "https://pkgs.tailscale.com/stable/?mode=json&os=linux") | sed -ne 's/.*"TarballsVersion":\s*"\([^\"]*\)\".*/\1/p')"
+
+	REQUESTED_VERSION=""
 	JETKVM_IP=""
 	AUTO_YES=false
         CLEAN_INSTALL=false
@@ -16,7 +18,7 @@ main() {
 	while [ $# -gt 0 ]; do
 		case $1 in
 		-v | --version)
-			TAILSCALE_VERSION="$2"
+			REQUESTED_VERSION="$2"
 			shift 2
 			;;
 		-y | --yes)
@@ -37,10 +39,10 @@ main() {
 	if [ -z "$JETKVM_IP" ]; then
 		echo "ERROR: JetKVM IP address is required"
 		echo ""
-		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] <JETKVM_IP>"
+		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] [-c|--clean] <JETKVM_IP>"
 		echo ""
 		echo "Options:"
-		echo "  -v, --version  Specify Tailscale version (default: $TAILSCALE_VERSION)"
+		echo "  -v, --version  Specify Tailscale version (defaults to current stable release)"
 		echo "  -y, --yes      Automatically answer yes to confirmation prompt"
 		echo "  -c, --clean    Delete any existing tailscale data (will cause a new machine to be created)"
 		echo ""
@@ -49,11 +51,11 @@ main() {
 		echo "  $0 -v 1.88.1 -y 192.168.1.64"
 		echo "  $0 --version 1.88.1 192.168.1.64"
 		echo ""
-		echo "Default Tailscale version: $TAILSCALE_VERSION (first version to support JetKVM)"
+		echo "Current Tailscale stable release: $TAILSCALE_STABLE"
 		exit 1
 	fi
 
-	export TAILSCALE_VERSION
+	export TAILSCALE_VERSION="${REQUESTED_VERSION:-$TAILSCALE_STABLE}"
 
 	# Confirmation prompt (unless auto-yes is enabled)
 	if [ "$AUTO_YES" = false ]; then
