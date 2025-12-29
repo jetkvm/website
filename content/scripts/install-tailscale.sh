@@ -12,7 +12,7 @@ main() {
 	SSH_CONFIG_NAME=""
 	AUTO_YES=false
 	CLEAN_INSTALL=false
-	POSITIONAL_COUNT=0
+
 
 	# Parse command line arguments
 	while [ $# -gt 0 ]; do
@@ -28,13 +28,16 @@ main() {
 		-c | --clean)
 			CLEAN_INSTALL=true
 			shift
+		-s | --ssh-config)
+			SSH_CONFIG_NAME="$2"
+			shift 1
 			;;
 		*)
-			POSITIONAL_COUNT=$((POSITIONAL_COUNT + 1))
-			if [ "$POSITIONAL_COUNT" -eq 1 ]; then
+			if [ -z "$JETKVM_IP" ]; then
 				JETKVM_IP="$1"
-			elif [ "$POSITIONAL_COUNT" -eq 2 ]; then
-				SSH_CONFIG_NAME="$1"
+			else
+				echo "ERROR: Unknown argument: $1"
+				exit 1
 			fi
 			shift
 			;;
@@ -51,21 +54,21 @@ main() {
 	if [ -z "$JETKVM_IP" ]; then
 		echo "ERROR: JetKVM IP address is required"
 		echo ""
-		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] <JETKVM_IP> [SSH_CONFIG_NAME]"
+		echo "Usage: $0 [OPTIONS] <JETKVM_IP>"
 		echo ""
 		echo "Options:"
 		echo "  -v, --version    Specify Tailscale version (default: $TAILSCALE_VERSION)"
 		echo "  -y, --yes        Automatically answer yes to confirmation prompt"
 		echo "  -c, --clean      Delete any existing tailscale data (will cause a new machine to be created)"
+		echo "  -s, --ssh-config <NAME>     Name of SSH config entry to use instead of root@IP"
 		echo ""
 		echo "Arguments:"
-		echo "  JETKVM_IP        IP address of the JetKVM device (required)"
-		echo "  SSH_CONFIG_NAME  Name of SSH config entry to use (optional)"
+		echo "  JETKVM_IP                   IP address of the JetKVM device (required)"
 		echo ""
 		echo "Examples:"
 		echo "  $0 192.168.1.64"
-		echo "  $0 192.168.1.64 jetkvm"
-		echo "  $0 -v 1.88.1 -y 192.168.1.64 jetkvm"
+		echo "  $0 -s jetkvm 192.168.1.64"
+		echo "  $0 -v 1.88.1 -y -s jetkvm 192.168.1.64"
 		echo ""
 		echo "Default Tailscale version: $TAILSCALE_VERSION (first version to support JetKVM)"
 		exit 1
