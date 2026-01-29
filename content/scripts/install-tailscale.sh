@@ -7,7 +7,7 @@ set -eu
 # up executing half a script.
 main() {
 
-	TAILSCALE_STABLE="$(echo $(curl -fsSL "https://pkgs.tailscale.com/stable/?mode=json&os=linux") | sed -ne 's/.*"TarballsVersion":\s*"\([^\"]*\)\".*/\1/p')"
+	TAILSCALE_STABLE="$(echo $(curl -fsSL "https://pkgs.tailscale.com/stable/?mode=json&os=linux") | sed -ne 's/.*"TarballsVersion":[ ]*"\([^"]*\)".*/\1/p')"
 
 	REQUESTED_VERSION=""
 	JETKVM_IP=""
