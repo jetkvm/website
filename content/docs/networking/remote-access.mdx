@@ -54,3 +54,17 @@ Tailscale is not pre-installed on the device. However, Tailscale has added out-o
 ```bash
 curl -fsSL https://jetkvm.com/install-tailscale.sh | sh -s -- <jetkvm_ip>
 ```
+
+### Additional Tailscale Arguments
+
+If you use a self-hosted Tailscale coordination server such as [Headscale](https://github.com/juanfont/headscale), you can pass additional arguments to the `tailscale up` command by appending them after `--` following the JetKVM IP address. Any arguments after the second `--` are forwarded directly to [`tailscale up`](https://tailscale.com/docs/reference/tailscale-cli/up).
+
+```bash
+curl -fsSL https://jetkvm.com/install-tailscale.sh | sh -s -- <jetkvm_ip> -- --login-server=https://headscale.example.com
+```
+
+You can also combine multiple `tailscale up` flags:
+
+```bash
+curl -fsSL https://jetkvm.com/install-tailscale.sh | sh -s -- <jetkvm_ip> -- --login-server=https://headscale.example.com --advertise-tags=tag:kvm
+```

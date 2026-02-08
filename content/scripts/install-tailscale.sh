@@ -12,7 +12,8 @@ main() {
 	REQUESTED_VERSION=""
 	JETKVM_IP=""
 	AUTO_YES=false
-        CLEAN_INSTALL=false
+	CLEAN_INSTALL=false
+	TAILSCALE_UP_ARGS=""
 
 	# Parse command line arguments
 	while [ $# -gt 0 ]; do
@@ -29,6 +30,11 @@ main() {
 			CLEAN_INSTALL=true
 			shift
 			;;
+		--)
+			shift
+			TAILSCALE_UP_ARGS="$*"
+			break
+			;;
 		*)
 			JETKVM_IP="$1"
 			shift
@@ -39,17 +45,26 @@ main() {
 	if [ -z "$JETKVM_IP" ]; then
 		echo "ERROR: JetKVM IP address is required"
 		echo ""
-		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] [-c|--clean] <JETKVM_IP>"
+		echo "Usage: $0 [-v|--version <TAILSCALE_VERSION>] [-y|--yes] [-c|--clean] <JETKVM_IP> [-- <tailscale_up_args>...]"
 		echo ""
 		echo "Options:"
 		echo "  -v, --version  Specify Tailscale version (defaults to current stable release)"
 		echo "  -y, --yes      Automatically answer yes to confirmation prompt"
 		echo "  -c, --clean    Delete any existing tailscale data (will cause a new machine to be created)"
 		echo ""
+		echo "Any arguments after '--' are passed directly to 'tailscale up'."
+		echo "See https://tailscale.com/docs/reference/tailscale-cli/up for available flags."
+		echo ""
 		echo "Examples:"
 		echo "  $0 192.168.1.64"
 		echo "  $0 -v 1.88.1 -y 192.168.1.64"
 		echo "  $0 --version 1.88.1 192.168.1.64"
+		echo ""
+		echo "  # Use a custom coordination server (e.g. Headscale):"
+		echo "  $0 192.168.1.64 -- --login-server=https://headscale.example.com"
+		echo ""
+		echo "  # Pass multiple tailscale up flags:"
+		echo "  $0 192.168.1.64 -- --login-server=https://headscale.example.com --advertise-tags=tag:kvm"
 		echo ""
 		echo "Current Tailscale stable release: $TAILSCALE_STABLE"
 		exit 1
@@ -65,6 +80,9 @@ main() {
 		echo ""
 		echo "  JetKVM IP:            $JETKVM_IP"
 		echo "  Tailscale Version:    $TAILSCALE_VERSION"
+		if [ -n "$TAILSCALE_UP_ARGS" ]; then
+			echo "  Tailscale Up Args:    $TAILSCALE_UP_ARGS"
+		fi
 		echo ""
 		echo "  Note: The device will be rebooted during installation"
 		echo ""
@@ -222,7 +240,7 @@ EOF
 	done
 
 	echo "[7/7] Starting Tailscale service..."
-	ssh root@"$JETKVM_IP" "tailscale up"
+	ssh root@"$JETKVM_IP" "tailscale up $TAILSCALE_UP_ARGS"
 	echo ""
 	echo "SUCCESS: Tailscale installation completed!"
 	echo "         Your JetKVM device is now ready to connect to your Tailscale network."
