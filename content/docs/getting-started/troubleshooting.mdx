@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: "Troubleshoot common JetKVM issues with a focus on resolving the Loading Video Stream problem and ensuring proper WebRTC connections."
+description: "Troubleshoot common JetKVM issues, including Connecting to Device on Safari and Loading Video Stream problems."
 order: 1
 ---
 
@@ -61,7 +61,7 @@ If you're on Linux (especially Fedora), try installing Firefox via **Flatpak fro
 
 ### Still Having Issues?
 
-Head over to our GitHub repo and create an issue, https://github.com/jetkvm/kvm. 
+Head over to our GitHub repo and create an issue, https://github.com/jetkvm/kvm.
 
 Our team is actively working to resolve these connection issues with each firmware update.
 
@@ -95,5 +95,9 @@ If your ATX power control still isn't working after following these steps, pleas
 - Your motherboard model and manual reference
 - Photos of your wiring setup
 - Description of which specific functions aren't working
+
+## Connecting to Device (Safari)
+
+If the JetKVM gets stuck at "Connecting to Device" in Safari 26 (macOS/iOS), this can be caused by a Safari/WebKit regression where Safari may doesn't start the initial WebSocket connection when using a raw LAN IP address. See: https://github.com/jetkvm/kvm/issues/1098#issuecomment-3878012741 for workarounds.
 
 
